@@ -145,7 +145,27 @@
                           </div>
                         </div>
 
-                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button class="btn btn-danger" id="btn_del{{$item->product_id}}"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <form action="{{route('products.destroy', $item->product_id)}}" method="POST" id="frm_del{{$item->product_id}}">
+                        @csrf
+                        @method("DELETE")
+                        </form>
+                        <script>
+                          $('#btn_del{{$item->product_id}}').on('click', function(){
+                            Swal.fire({
+                              title: 'Are you delete ?<br/>[{{$item->product_name}}]',
+                              icon: 'warning',
+                              showCancelButton: true,
+                              confirmButtonText: 'Delete',
+                              cancelButtonText: `Cancel`,
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  $('#frm_del{{$item->product_id}}').submit();
+                                }
+                              })
+
+                          });
+                        </script>
                     </div>
                 </div>
             </div>
