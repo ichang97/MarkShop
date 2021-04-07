@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label>Product type</label>
                 <select class="form-control" type="text" id="txt_type" name="txt_type" >
-                    <option disable>Please select...</option>
+                    <option disable value="">Please select...</option>
                     @foreach($product_types as $item)
                       <option value="{{$item->id}}">{{$item->type_name}}</option>
                     @endforeach
@@ -67,13 +67,21 @@
       </div>
     </div>
   </div>
-
+@php
+  $rows = 2; $count = 0;
+@endphp
     <div class="row row-cols-2">
+      @foreach($products as $item)
         <div class="col">
             <div class="card border-primary shadow">
+                @if($item->product_img == "")
                 <img class="card-img-top" src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg">
+                @else
+                <img class="card-img-top" src="{{$item->product_img}}">
+                @endif
                 <div class="card-header bg-primary text-white">
-                    Product name. [Price]
+                    <h4 class="h4">[{{$item->product_code}}] {{$item->product_name}}</h4>
+                    <i class="fas fa-list-ul"></i> {{$item->type_name}}
                 </div>
                 <div class="card-footer">
                     <div class="btn-group shadow-sm float-right">
@@ -83,6 +91,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    @php
+      $count++;
+    @endphp
+
+    @if ($count % $rows == 0)
+      </div><br /><div class="row row-cols-2">
+    @endif
+
+    @endforeach
 </div>
 @endsection
