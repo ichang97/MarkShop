@@ -18,7 +18,17 @@ class ProductController extends Controller
         //get product type
         $product_types = DB::table('product_types')->get();
 
-        return view('products.index')->with('product_types', $product_types);
+        //get all products
+        $products = DB::table('products')
+                    ->select(
+                        'products.id as product_id', 'products.product_name', 'products.product_code',
+                        'products.product_img', 'products.created_at', 'product_types.type_name'
+                    )
+                    ->join('product_types', 'product_types.id' ,'=', 'products.product_type')
+                    ->orderBy('products.id','asc')
+                    ->get();
+
+        return view('products.index',compact('product_types', 'products'));
     }
 
     /**
@@ -43,10 +53,10 @@ class ProductController extends Controller
         $handle = new ErrorHandleController();
 
         if($request->txt_productcode == ""){
-            $result = $handle->ShowErrorMsg("Error", "Please enter product name");
+            $result = $handle->ShowErrorMsg("Error", "Please enter product code");
             return redirect()->route('products.index')->with('result', $result);
         }elseif($request->txt_productname == ""){
-            $result = $handle->ShowErrorMsg("Error", "Please enter product code");
+            $result = $handle->ShowErrorMsg("Error", "Please enter product name");
             return redirect()->route('products.index')->with('result', $result);
         }elseif($request->txt_productdesc == ""){
             $result = $handle->ShowErrorMsg("Error", "Please enter product description");
@@ -70,7 +80,9 @@ class ProductController extends Controller
                 'product_desc' => $request->txt_productdesc,
                 'price' => $request->txt_price,
                 'product_img' => $request->txt_img,
-                'product_type' => $request->txt_type
+                'product_type' => $request->txt_type,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
     
             if($products){
