@@ -22,7 +22,8 @@ class ProductController extends Controller
         $products = DB::table('products')
                     ->select(
                         'products.id as product_id', 'products.product_name', 'products.product_code',
-                        'products.product_img', 'products.created_at', 'product_types.type_name'
+                        'products.product_img', 'products.created_at', 'product_types.type_name',
+                        'products.product_desc','products.price', 'products.product_type'
                     )
                     ->join('product_types', 'product_types.id' ,'=', 'products.product_type')
                     ->orderBy('products.id','asc')
@@ -127,7 +128,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $handle = new ErrorHandleController();
+
+        $products = DB::table('products')->where('id', '=', $id)
+                    ->update([
+                        'product_name' => $request->input('txt_productname'.$id),
+                        'product_code' => $request->input('txt_productcode'.$id),
+                        'product_desc' => $request->input('txt_productdesc'.$id),
+                        'price' => $request->input('txt_price'.$id),
+                        'product_img' => $request->input('txt_img'.$id),
+                        'product_type' => $request->input('txt_type'.$id),
+                        'updated_at' => now()
+                    ]);
+        
+        if($products){
+            $result = $handle->ShowSuccessMsg("Success!", "Update product completed.");
+        }else{
+            $result = $handle->ShowErrorMsg("Error!", "Update product error, Please try again.");
+        }
+
+        return redirect()->route('products.index')->with('result', $result);
     }
 
     /**
