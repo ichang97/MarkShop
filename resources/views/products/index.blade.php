@@ -80,7 +80,7 @@
                 <img class="card-img-top" src="{{$item->product_img}}">
                 @endif
                 <div class="card-header bg-primary text-white">
-                    <h4 class="h4">[{{$item->product_code}}] {{$item->product_name}}</h4>
+                    <h4 class="h4">[{{$item->product_code}}] {{$item->product_name}}<div class="float-right">{{number_format($item->price,2)}}</div></h4>
                     <i class="fas fa-list-ul"></i> {{$item->type_name}}
                 </div>
                 <div class="card-footer">
