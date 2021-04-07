@@ -18,8 +18,6 @@ class ProductController extends Controller
         //get product type
         $product_types = DB::table('product_types')->get();
 
-        //ffff
-
         return view('products.index')->with('product_types', $product_types);
     }
 
