@@ -158,6 +158,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $handle = new ErrorHandleController();
+        $product = DB::table('products')->where('id', '=', $id)->delete();
+
+        if($product){
+            $result = $handle->ShowSuccessMsg("Success!", "Delete product completed.");
+        }else{
+            $result = $handle->ShowErrorMsg("Error!", "Delete product error, Please try again.");
+        }
+
+        return redirect()->route('products.index')->with('result', $result);
     }
 }
