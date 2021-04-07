@@ -13,6 +13,7 @@ class MemberController extends Controller
      */
     public function index()
     {
+        //comment
         return view('members.index');
     }
 
