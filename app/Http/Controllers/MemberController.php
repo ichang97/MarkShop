@@ -13,6 +13,7 @@ class MemberController extends Controller
      */
     public function index()
     {
+        //Test commit
         return view('members.index');
     }
 
