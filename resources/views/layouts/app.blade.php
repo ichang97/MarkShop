@@ -62,8 +62,16 @@
                         <li class="nav-item">
                             <a href="{{route('show_cart')}}" class="btn btn-primary">
                                 @if(session('cart'))
+                                @php
+                                    $cart_count = 0;
+                                @endphp
+                                @foreach (session('cart') as $id => $item)
+                                    @php
+                                        $cart_count += $item['quantity'];
+                                    @endphp
+                                @endforeach
                                 <span class="badge badge-pill badge-danger">
-                                    {{count(session('cart'))}}
+                                    {{$cart_count}}
                                 </span>
                                 @endif
                                 
