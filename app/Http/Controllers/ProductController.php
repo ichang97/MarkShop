@@ -82,6 +82,7 @@ class ProductController extends Controller
                 'price' => $request->txt_price,
                 'product_img' => $request->txt_img,
                 'product_type' => $request->txt_type,
+                'product_status' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
