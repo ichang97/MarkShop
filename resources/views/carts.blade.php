@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         @php
-            $total = 0;
+            $total_price = 0; $total_qty = 0;
         @endphp
         @foreach(session('cart') as $id => $item)
             <tr>
@@ -61,43 +61,21 @@
                                 }
                               })
                         });
-                        /*
-                        $('#txt_qty{{$id}}').on("keypress", function(e){
-                            if(e.which == 13){
-                                ConfirmUpdate{{$id}}();
-                            }
-                        });
-
-                        function handleConfirm{{$id}}(){
-                            //$("#frm_edit{{$id}}").submit();
-                        }
-
-                        function ConfirmUpdate{{$id}}(){
-                            Swal.fire({
-                              title: "Are you delete ?<br/>[{{$item['product_name']}}]",
-                              icon: 'warning',
-                              showCancelButton: true,
-                              confirmButtonText: 'Delete',
-                              cancelButtonText: `Cancel`,
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  //
-                                }
-                              })
-                        }
-                        */
+    
                     </script>
                     </div>
                 </td>
             </tr>
             @php
-                $total += $item['quantity'] * $item['price'];
+                $total_price += $item['quantity'] * $item['price'];
+                $total_qty += $item['quantity'];
             @endphp
         @endforeach
         </tbody>
     </table>
     <div class="h3" style="text-align: right;">
-        Total = {{number_format($total,2)}}
+        Total Qtys = {{number_format($total_qty)}}<br />
+        Total Price = {{number_format($total_price,2)}}
     </div>
     <br />
 
