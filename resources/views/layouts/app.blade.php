@@ -15,10 +15,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -33,10 +29,19 @@
     <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" ref="stylesheet">
     <script src="{{asset('js/jquery.dataTables.min.js')}}" defer></script>
     <script src="{{asset('js/dataTables.bootstrap4.min.js')}}" defer></script>
+
+    <!-- Google Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+        html,body{
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -54,6 +59,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a href="{{route('show_cart')}}" class="btn btn-primary">
+                                @if(session('cart'))
+                                <span class="badge badge-pill badge-danger">
+                                    {{count(session('cart'))}}
+                                </span>
+                                @endif
+                                
+                                <i class="fas fa-shopping-cart"></i> Carts</a>
+                        </li>
+                        
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
