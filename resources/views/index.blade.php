@@ -11,6 +11,15 @@
             )
         </script>
     @endif
+    @if(session('login_result'))
+        <script>
+            Swal.fire(
+                "{{session('login_result.title')}}",
+                "{{session('login_result.msg')}}",
+                "{{session('login_result.type')}}"
+            )
+        </script>
+    @endif
 
     @php
     $rows = 2; $count = 0;
