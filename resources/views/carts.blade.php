@@ -12,6 +12,7 @@
 @endif
 <div class="container">
     @if(count(session('cart')) != 0)
+    <div class="table-responsive">
     <table class="table table-hover">
         <thead class='text-center'>
             <th>Product Image</th>
@@ -73,17 +74,25 @@
         @endforeach
         </tbody>
     </table>
+</div>
     <div class="h3" style="text-align: right;">
         Total Qtys = {{number_format($total_qty)}}<br />
         Total Price = {{number_format($total_price,2)}}
     </div>
     <br />
-
+    @if(session('member_login'))
+    <a href="#" class="btn btn-success btn-block"><i class="fas fa-check"></i> Confirm Order</a>
+    @else
+    <div class="alert alert-warning text-center">
+        <b>Please login before confirm the order.</b>
+    </div>
+    @endif
+    <br />
     @else
     <div class="alert alert-primary shadow h3 text-center">
         Cart is empty.
     </div>
     @endif
-    <a href="{{route('index')}}" class="btn btn-success btn-block"><i class="fas fa-arrow-left"></i> Continue shopping.</a>
+    <a href="{{route('index')}}" class="btn btn-outline-primary btn-block"><i class="fas fa-arrow-left"></i> Continue shopping.</a>
 </div>
 @endsection

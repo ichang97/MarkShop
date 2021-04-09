@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,15 @@ Route::patch('update_cart/{id}', [CartController::class, 'UpdateCart'])->name('u
 
 //Delete cart route
 Route::delete('delete_cart/{id})', [CartController::class, 'DeleteCart'])->name('delete_cart');
+
+//Member resource
+Route::resource('members', MemberController::class);
+
+//Member login
+Route::get('member_login', [MemberController::class, 'member_login'])->name('member_login');
+
+//Member logout
+Route::get('member_logout', [MemberController::class, 'member_logout'])->name('member_logout');
+
+//Member view my profile
+Route::get('my_profile', [MemberController::class, 'index'])->name('my_profile');

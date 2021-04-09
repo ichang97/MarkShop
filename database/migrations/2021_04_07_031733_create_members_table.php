@@ -17,7 +17,7 @@ class CreateMembersTable extends Migration
             $table->id();
             $table->char('firstname',100);
             $table->char('lastname', 100);
-            $table->dateTime('dob');
+            $table->date('dob');
             $table->integer('member_type');
             $table->timestamps();
 
