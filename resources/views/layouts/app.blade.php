@@ -167,7 +167,7 @@
                                     @endphp
                                 @endforeach
                                 <span class="badge badge-pill badge-danger">
-                                    {{$cart_count}}
+                                    {{number_format($cart_count)}}
                                 </span>
                                 @endif
                                 
