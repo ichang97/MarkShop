@@ -83,7 +83,7 @@
             @if(count($address) != 0)
             <div class="row row-cols-3">
                 @php
-                    $rows = 3; $count = 1;
+                    $rows = 3; $count = 0;
                 @endphp
                 @foreach ($address as $item)
                 <div class="col">
