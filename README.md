@@ -18,6 +18,7 @@
     <li>Sweetalert2</li>
     <li>DataTable</li>
     <li>FontAwesome</li>
+    <li>jQueryThailand</li>
 </ul>
 
 <br />
