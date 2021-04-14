@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\AddressBookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,6 @@ Route::get('member_logout', [MemberController::class, 'member_logout'])->name('m
 
 //Member view my profile
 Route::get('my_profile', [MemberController::class, 'index'])->name('my_profile');
+
+//Address Book resource
+Route::resource('address_book', AddressBookController::class);
