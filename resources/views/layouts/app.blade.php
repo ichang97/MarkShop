@@ -9,14 +9,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- jQuery -->
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- JqueryThailand for address book -->
+    <link rel="stylesheet" href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
 
     <!-- Sweetalert -->
     <link href="{{asset('css/sweetalert2.min.css')}}" rel="stylesheet">
@@ -142,7 +139,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{{route('my_profile')}}"><i class="fas fa-user"></i> Profile</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-clipboard-list"></i> Orders</a>
-                                <a class="dropdown-item" herf="#"><i class="fas fa-address-book"></i> Address book</a>
+                                <a class="dropdown-item" href="{{route('address_book.index')}}"><i class="fas fa-address-book"></i> Address book</a>
                                 <a class="dropdown-item" href="{{route('member_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             </div>
                         </li>
@@ -203,10 +200,19 @@
                 </div>
             </div>
         </nav>
+        <!-- jQuery -->
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+        <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+        <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+        
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
